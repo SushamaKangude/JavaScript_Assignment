@@ -1,0 +1,62 @@
+<!--Error Handling task-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error Handling</h1>
+    <p id="message"></p>
+
+    <script>
+       
+        function validateNumber(num) {
+            if (typeof num !== 'number') {
+                throw new Error("Invalid argument: Not a number");
+            }
+            return `The number is ${num}`;
+        }
+
+        
+        try {
+            
+            let result = validateNumber(42);
+            document.getElementById("message").innerText = result;
+            document.getElementById("message").className = "success";
+        } catch (error) {
+            document.getElementById("message").innerText = error.message;
+            document.getElementById("message").className = "error";
+        } finally {
+            console.log("Validation attempt completed.");
+        }
+
+        
+        try {
+            
+            let result = validateNumber("not a number");
+            document.getElementById("message").innerText = result;
+            document.getElementById("message").className = "success";
+        } catch (error) {
+            document.getElementById("message").innerText = error.message;
+            document.getElementById("message").className = "error";
+        } finally {
+            console.log("Validation attempt completed.");
+        }
+    </script>
+</body>
+</html>
